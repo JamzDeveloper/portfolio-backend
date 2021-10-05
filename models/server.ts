@@ -3,11 +3,13 @@ import cors from "cors";
 
 import blogRoutes from "../routes/blog";
 import userRoutes from "../routes/user";
+import homeRoutes from "../routes/home";
 import db from "../db/connection";
 class Server {
   private app: Application;
   private port: string;
   private apiPath = {
+    home: "/api/home",
     blogs: "/api/blogs",
     users: "/api/users",
   };
@@ -38,7 +40,8 @@ class Server {
 
   routes() {
     this.app.use(this.apiPath.blogs, blogRoutes);
-    this.app.use(this.apiPath.users, userRoutes);
+    // this.app.use(this.apiPath.users, userRoutes);
+    this.app.use(this.apiPath.home,homeRoutes);
   }
 
   listen() {
